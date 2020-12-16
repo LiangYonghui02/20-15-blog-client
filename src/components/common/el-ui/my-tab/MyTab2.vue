@@ -24,7 +24,7 @@
                     <type-title text="收到的短笺"></type-title>
                     <f-f-item v-for="item in lastMsgData" :item="item" @toMsgFrame="toMsgFrame" :key="item"></f-f-item>
                 </div>
-                <div class="msg-frame" v-else>
+                <div class="msg-frame" v-else >
                     <type-title :text="'与  【'+this.name+'】  对话'"></type-title>
                     <div class="msg-body">
 
@@ -81,6 +81,7 @@
     import OppositeMsgItem from "../../../contents/message/OppositeMsgItem";
     import {sendWSMessage, getWSMessage, getWSLastMessage} from "../../../../network/auth";
     import {mapGetters} from 'vuex';
+    import {baseInfo} from "../../../../network/mine";
 
     export default {
         name: "MyTab2",
@@ -124,7 +125,7 @@
             },
             isBeforeMsg: {
                 type: Boolean,
-                default: true,  // true
+                default: false,  // true
             },
 
             conversationId: {
@@ -151,12 +152,15 @@
                 //     convarsationId = msg.fromId + '' + msg.toId;
                 // }
                 this.isBeforeMsg = false;
-                this.$forceUpdate();
+                // this.$forceUpdate();
+                // this.isBeforeMsg = false;
                 this.conversationId = convarsationId;
-                alert(this.conversationId)
+                // alert(this.conversationId)
 
                 this.fromId = msg.fromId;
                 this.toId = msg.toId;
+
+
 
 
 
@@ -173,14 +177,22 @@
                 });
                 // 建立连接
                 this.initWebSocket(this.conversationId);
+
+                baseInfo(msg.fromId).then(res => {
+                    this.name = res.data.username;
+
+                })
+
+                // this.isBeforeMsg = false;
+                // this.isBeforeMsg = false;
             },
 
-            beforeLeave() {
-                this.isBeforeMsg = true;
-            },
+            // beforeLeave() {
+            //     this.isBeforeMsg = true;
+            // },
 
             sendMsg() {
-                alert(this.textarea2);
+                // alert(this.textarea2);
                 if (this.textarea2 == '') {
                     return;
                 }
@@ -214,6 +226,7 @@
 
 
             initWebSocket: function (id) {
+                // alert(this.isBeforeMsg)
                 // id 会话id
                 // WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https
                 this.websock = new WebSocket("ws://localhost:8000/websocket/" + id);
@@ -223,7 +236,7 @@
                 this.websock.onclose = this.websocketclose;
             },
             websocketonopen: function () {
-                alert("WebSocket连接成功");
+                // alert("WebSocket连接成功！");
                 console.log("WebSocket连接成功");
             },
             websocketonerror: function (e) {
@@ -234,7 +247,7 @@
                 var da = e.data
                 console.log(da);
                 this.message = da;
-                alert(this.message)
+                // alert(this.message)
 
                 this.msgData.push({
                     'content': this.message,
@@ -260,19 +273,34 @@
             },
 
 
+
+
             tabName(val) {
                 if (this.tabName == 'fourth') {
-                    alert(1234567)
+                    // alert(1234567)
                     let msg = {
                         'fromId': this.fromId,
                         'toId': this.toId
                     };
-                    this.isBeforeMsg = false;
                     this.toMsgFrame(msg);
                 } else {
-                    alert(7654321)
+                    // alert(7654321)
                 }
             },
+
+            isBeforeMsg(val) {
+                    if (this.isBeforeMsg == false && this.tabName == 'fourth') {
+                        // alert(999)
+
+                        let msg = {
+                            'fromId': this.fromId,
+                            'toId': this.toId
+                        };
+
+                        this.toMsgFrame(msg);
+
+                    }
+            }
 
             // isBeforeMsg(val) {
             //

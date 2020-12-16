@@ -118,7 +118,7 @@
                 let vercode = {'vercode':this.vercode}
                 register(data,vercode).then(res=> {
                     alert(res.msg)
-                    this.$router.replace('/login');
+                    this.$router.push('/login');
                 })
             },
             subLogin() {

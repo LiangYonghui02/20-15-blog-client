@@ -3,7 +3,7 @@
         <my-nav-bar2></my-nav-bar2>
         <lay-out>
             <div slot="left-layout" class="left-layout">
-                <my-tab2 :tab-name="tabName" :is-before-msg="false" :from="fromId" :to="toId"  :conversation-id="conId"></my-tab2>
+                <my-tab2 :tab-name="tabName" :is-before-msg="isBeforeMsg" :from="fromId" :to="toId"  :conversation-id="conId"></my-tab2>
             </div>
             <div slot="right-layout">
                 <my-picture2></my-picture2>
@@ -63,6 +63,8 @@
                         vm.tabName = 'fourth';
                         vm.isBeforeMsg = false;
 
+                        // alert(vm.isBeforeMsg)
+
                         // alert( vm.fromID)
                         // alert( vm.To)
                     }
@@ -79,7 +81,6 @@
             }
 
             next();
-
 
         },
 

@@ -114,28 +114,21 @@
             ...mapMutations(['setAvatarUrl']),
             //上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。
             beforeUpload(file) {
-                alert(111)
                 const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
                 const isLt5M = file.size / 1024 / 1024 < 5;
                 if (!isJPG) {
-                    alert(1)
                     return false
                 }
                 if (!isLt5M) {
-                    alert(2)
                     return false
                 }
             },
             handleSuccess(res, file) {
-                alert(4)
-                this.userData.userInfo.avatarUrl = 'http://qjavcyfnj.hn-bkt.clouddn.com/' + res.key;
-                let url = 'http://qjavcyfnj.hn-bkt.clouddn.com/' + res.key
+                this.userData.userInfo.avatarUrl = 'http://ql9em9v3u.hn-bkt.clouddn.com/' + res.key;
+                let url = 'http://ql9em9v3u.hn-bkt.clouddn.com/' + res.key
                 let data = {'url':url};
                 updateUserUrl(data).then(res => {
-
-                    alert(res.status)
                     if (res.status == 200) {
-                        alert(300)
                         this.setAvatarUrl(url);
                     }
                 })
@@ -150,10 +143,7 @@
 
         created() {
             getUserSetting().then(res => {
-                alert(res.status)
                 this.userData = res.data;
-
-                alert(res.data.uploadToken)
                 console.log(res.data)
                 this.qn.token = res.data.uploadToken;
                 this.qn.key = res.data.fileName;

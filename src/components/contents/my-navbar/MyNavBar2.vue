@@ -15,10 +15,11 @@
                 <nav-bar-item path="/message">
                     <img slot="item-icon" src="~assets/img/navbar/消息.png" alt="">
                     <img slot="item-icon-active" src="~assets/img/navbar/消息-填充.png" alt="">
-                    <div slot="item-text">消息<span class="unread">{{getMessageCount}}</span></div>
+<!--                    <div slot="item-text">消息<span class="unread">{{getMessageCount}}</span></div>-->
+                    <div slot="item-text">消息</div>
 
                 </nav-bar-item>
-                <nav-bar-item path="/essay/1323983209452544002">
+                <nav-bar-item path="/essay/1339204706039320578">
                     <img slot="item-icon" src="~assets/img/navbar/意见.png" alt="">
                     <img slot="item-icon-active" src="~assets/img/navbar/意见-填充.png" alt="">
                     <div slot="item-text">关于本站</div>

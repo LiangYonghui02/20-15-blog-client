@@ -7,11 +7,6 @@
                 >
             <div slot="left-layout">
                 <article-list :articles="getHomeEssays"></article-list>
-                <el-pagination
-                        :background="true"
-                        layout="prev, pager, next"
-                        :total="1000">
-                </el-pagination>
             </div>
             <div slot="right-layout">
                <introduce-writer></introduce-writer>

@@ -4,8 +4,6 @@ import router from './router'
 import store from './store'
 // 全局引入网络请求
 import "./network/request";
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -14,6 +12,10 @@ import PerfectScrollbar from 'perfect-scrollbar';
 //对应的css
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+// use
+Vue.use(mavonEditor)
 /**
  * @description 自动判断该更新PerfectScrollbar还是创建它
  * @param {HTMLElement} el - 必填。dom元素
